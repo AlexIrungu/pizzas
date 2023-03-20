@@ -5,4 +5,23 @@ class RestaurantsController < ApplicationController
         rest = Restaurant.all
         render json: rest
     end
+    def show 
+        rest = Restaurant.find_by(id: params[:id])
+        render json: rest, include: :pizzas
+    end
+    def destroy
+        rest = Restaurant.find_by(id: params[:id])
+        rest.destroy(rest_params)
+        render json: rest
+    end
+
+    private
+
+    def render_not_found_response
+        render json: {error: "Restaurant not found"}, status: :not_found
+    end
+
+    def rest_params
+        params.permit(:name, :address)
+    end
 end
