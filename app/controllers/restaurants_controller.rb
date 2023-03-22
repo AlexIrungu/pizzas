@@ -5,10 +5,12 @@ class RestaurantsController < ApplicationController
         rest = Restaurant.all
         render json: rest
     end
+
     def show 
         rest = Restaurant.find_by(id: params[:id])
         render json: rest, include: :pizzas
     end
+    
     def destroy
         rest = Restaurant.find_by(id: params[:id])
         rest.destroy(rest_params)
