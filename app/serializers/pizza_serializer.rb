@@ -1,3 +1,3 @@
-class PizzaSerializer < ActiveModel::Serializer
+class PizzaSerializer < ActiveModel::Serializers
     attributes :name, :ingredients
 end
